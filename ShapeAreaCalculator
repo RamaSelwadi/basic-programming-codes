@@ -1,0 +1,394 @@
+
+package finalPrep;
+//coded by Rama Selwadi
+
+import java.util.InputMismatchException;//to fix a runtime error that ocurred
+
+import java.util.Scanner; //to use the scanner object to get input from the user 
+
+/*im using the ANSI codes to control the text's color on the outputs
+each color has a code to change the output's color by using it in the System.out.ptint () statement 
+i did a little reasearch on them using 
+https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+because i wanted to make my code a little bit more fun in a way 
+i explained how i used them down in the code */
+
+public class Procedural {
+	
+	public static void main(String[] args) {
+		
+
+		  //first i need to intailaize variables of type string for each color i want to use from the ANSI code
+        //each color has a set of numbers and letters than can be assigned to a variable and used to change output color
+		    String ANSI_PURPLE = "\u001B[35m";
+	      	String ANSI_CYAN = "\u001B[36m";
+	        String ANSI_BLUE = "\u001B[34m";
+	        String ANSI_RESET = "\u001B[0m";//it's used at the end of every print system that has a changed color code at the start of it
+	        /*it's necessary because the way that these codes work is that they change the color
+	         *  of all the outputs starting from the place in the print statement they were put in until the end of the code
+	         */
+	       
+	      
+		System.out.println(ANSI_BLUE+"Shapes Area Calculator"+ANSI_RESET); //title
+		
+		 while (true) { // i used a while loop here that keeps going until the user inputs a valid input 
+			 //using continue and break to  achieve the result that i want 
+			 // the while (true) loop is used to make an infinite loop
+			 Scanner input = new Scanner(System.in);
+
+		System.out.println("a. Rectangle");//first option
+        System.out.println("b. Triangle");//second option
+        System.out.println("c. Circle");//third option
+        System.out.println("d. Square");//fourth option
+        System.out.println("e. Parallelogram");//fifth option
+        System.out.println("f. Trapezoid");//sixth option
+        System.out.println("g. Exit calculator");//exit option
+        
+        System.out.print(ANSI_PURPLE+"Enter the option that you chose: "+ANSI_RESET);
+        
+        
+        String letter = input.nextLine();/*first the user will enter an input of type string
+         (but in my code i want it to just be a single letter which is char type)
+       */
+        if (letter.length() != 1) {
+            System.err.println("Invalid choice. Please enter a single letter.");
+            continue;
+        }
+        
+        char option = letter.charAt(0);//takes just one letter
+        
+        switch (option) {
+        case 'a':
+        case 'A':
+        	RectangleArea(option);//the variable option here is just used to enter the helping method RectangleArea that calculates the area
+        	
+        	continue;//stop the while loop because i got a valid input but if the input isn't a||A then it goes to the next case b||B
+            
+            
+        case 'b':
+        case 'B':
+        	TriangleArea(option);
+        	
+        	continue;//stop the while loop because i got a valid input but if the input isn't b||B then it goes to the next case c||C
+            
+            
+        case 'c':
+        case 'C':
+        	CircleArea(option);
+           
+        	continue;//stop the while loop because i got a valid input but if the input isn't a||A then it goes to the next case d||D
+       
+            
+            
+        case 'd':
+        case 'D':
+        	SquareArea(option);
+        	
+        	continue;//stop the while loop because i got a valid input but if the input isn't d||D then it goes to the next case e||E
+        	
+        	
+        case 'e':
+        case 'E':
+        	ParallelogramArea(option);
+           
+        	continue;//stop the while loop because i got a valid input but if the input isn't e||E then it goes to the next case f||F
+           
+        case 'f':
+        case 'F':
+        	TrapezoidArea(option);
+           
+        	 continue;//stop the while loop because i got a valid input but if the input isn't a||A then it goes to the next case which is default
+        
+        case 'g':
+        case 'G':
+        	System.out.println(ANSI_CYAN+"Thank you for using this calculator <3 <3"+ANSI_RESET);
+        	input.next();
+        	break;
+        default:
+            System.err.println("Invalid choice "+"\n please re-enter your choice"); //tells the user that the input isn't valid (error)
+            continue; // Continue the loop to re-enter the input
+                 
+    }
+        break; // Break the loop if a valid input is provided 
+	        }//while loop end
+
+	        
+	    }//main end
+	
+	
+	 public static void RectangleArea(char a) {
+		 String ANSI_CYAN = "\u001B[36m";
+		 String ANSI_RESET = "\u001B[0m";
+		 String ANSI_WHITE = "\u001B[37m";
+		 System.out.println(ANSI_CYAN +"you chose to calculate a rectangle's area ....");
+		 
+		 Scanner rec = new Scanner(System.in);
+		
+		 //formula :Area = length * width
+		 while(true) {
+		 try {
+		 double length = 0;
+	        do {
+	            System.out.print(ANSI_WHITE+"Enter the length: "+ANSI_RESET);
+	            length = rec.nextDouble();
+	            
+	            if (length <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (length <= 0);
+	        
+	        double width = 0;
+	        do {
+	            System.out.print(ANSI_WHITE+"Enter the width: ");
+	            width = rec.nextDouble();
+	            
+	            if (width <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (width <= 0);
+	        
+	        double area = length * width;
+	        System.out.println("Area of the rectangle = " + area);
+	        break;}
+		// catch(NumberFormatException e)
+	        catch(InputMismatchException e) {
+	        	System.err.println(e.getMessage()+" the value cant be negative or 0");
+	        	rec.next();
+	        	continue;
+	        }}
+	       
+	    }//rectangle helper-method end
+
+	 public static void TriangleArea(char a) {
+		 
+		 String ANSI_CYAN = "\u001B[36m";//re initialize them so they can be used in the helper method
+		 String ANSI_RESET = "\u001B[0m";
+		 String ANSI_WHITE = "\u001B[37m";
+		 
+		 System.out.println(ANSI_CYAN+"you chose to calculate a triangle's area ...."+ANSI_RESET);
+		 
+		 Scanner tri = new Scanner(System.in);
+		 
+		 //Formula: Area = (base * height) / 2
+		 while(true) {
+			 try {
+		 double base;
+	        do {
+	            System.out.print(ANSI_WHITE+"Enter the base: "+ANSI_RESET);
+	            base = tri.nextDouble();
+	         
+	            if (base <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (base <= 0);
+	        
+	        double height;
+	        do {
+	            System.out.print(ANSI_WHITE+"Enter the height: "+ANSI_RESET);
+	            height = tri.nextDouble();
+	            
+	            if (height <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (height <= 0);
+	        
+	        double area = 0.5 * base * height;
+	        
+	        System.out.println("Area of the triangle: " + area);
+	        
+	        break;}
+			 catch(InputMismatchException e) {
+		        	System.err.println(e.getMessage()+" invaild input");
+		        	tri.next();
+		        	continue;
+		        }}
+		       
+		    }//triangle helper-method end
+	 
+	 public static void CircleArea(char c) {
+		 String ANSI_CYAN = "\u001B[36m";
+		 String ANSI_RESET = "\u001B[0m";//the variables in the main are seperate from the ones in the helper method so i have to re intaileize them here
+		 String ANSI_WHITE = "\u001B[37m";
+		 System.out.println(ANSI_CYAN+"you chose to calculate a circle's area ...."+ANSI_RESET);
+		 
+		 
+		 Scanner cir = new Scanner(System.in);
+		 while(true) {
+			 try {
+		 //Formula: Area = π * radius^2
+		 double radius;
+		 do {
+	            System.out.print(ANSI_WHITE+"Enter the radius: "+ANSI_RESET);
+	            radius = cir.nextDouble();
+	            
+	            if (radius <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (radius <= 0);
+		 
+	        double area = Math.PI* radius * radius;
+	        
+	        System.out.println("Area of the circle: " + area);
+	        break;}
+				// catch(NumberFormatException e)
+			        catch(InputMismatchException e) {
+			        	System.err.println(e.getMessage()+" the value cant be negative or 0");
+			        	cir.next();
+			        	continue;
+			        }}
+			       
+			    }//circle helper-method end
+	 
+	 public static void SquareArea(char d) {
+		 String ANSI_CYAN = "\u001B[36m";
+		 String ANSI_RESET = "\u001B[0m";
+		 String ANSI_WHITE = "\u001B[37m";
+		 System.out.println(ANSI_CYAN+"you chose to calculate a square's area ...."+ANSI_RESET);
+		 
+		 
+		 Scanner squ = new Scanner(System.in);
+		 
+		 //Formula: Area = side length * side length
+		 while(true) {
+			 try {
+		 double sideLength;
+	        do {
+	            System.out.print(ANSI_WHITE+"Enter the side length: "+ANSI_RESET);
+	            sideLength = squ.nextDouble();
+	            
+	            if (sideLength <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (sideLength <= 0);
+	        
+	        double area = sideLength * sideLength;
+	        
+	        System.out.println("Area of the square: " + area);
+	        break;}
+				// catch(NumberFormatException e)
+			        catch(InputMismatchException e) {
+			        	System.err.println(e.getMessage()+" the value cant be negative or 0");
+			        	squ.next();
+			        	continue;
+			        }
+	        }
+	    }//square helper-method end
+	 
+	 public static void ParallelogramArea(char E) {
+		 String ANSI_CYAN = "\u001B[36m";
+		 String ANSI_RESET = "\u001B[0m";
+		 String ANSI_WHITE = "\u001B[37m";
+		 System.out.println(ANSI_CYAN+"you chose to calculate a parallelogram's area ...."+ANSI_RESET);
+		 
+		 
+		 Scanner par = new Scanner(System.in);
+		 
+		 //Formula: Area = base * height
+		 while(true) {
+			 try {
+		 double base;
+	        do {
+	            System.out.print(ANSI_WHITE+"Enter the base: "+ANSI_RESET);
+	            base = par.nextDouble();
+	            
+	            if (base <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (base <= 0);
+	        
+	        double height;
+	        do {
+	            System.out.print(ANSI_WHITE+"Enter the height: "+ANSI_RESET);
+	            height = par.nextDouble();
+	            
+	            if (height <= 0) {
+	                System.err.println("Invalid input. Please enter a positive number.");
+	            }
+	        } while (height <= 0);
+	        
+	        double area = base*height;
+	        
+	        System.out.println("Area of the parallelogram: " + area);
+	        break;
+			 }
+				// catch(NumberFormatException e)
+			        catch(InputMismatchException e) {
+			        	System.err.println(e.getMessage()+" the value cant be negative or 0");
+			        	par.next();
+			        	continue;
+			        }
+	        }
+	  } //Parallelogram helper-method end
+	 
+	 
+	 public static void TrapezoidArea(char f) {
+		 String ANSI_CYAN = "\u001B[36m";
+		 String ANSI_RESET = "\u001B[0m";
+		 String ANSI_GREEN = "\u001B[32m";
+		 String ANSI_WHITE = "\u001B[37m";
+		 System.out.println(ANSI_CYAN+"you chose to calculate a trapezoid's area ...."+ANSI_RESET);
+		 
+		 
+		 Scanner tra = new Scanner(System.in);
+		 while(true) {
+			 try {
+		 System.out.println(ANSI_GREEN+"assuming that base 1 is less than base 2 please enter the following"+ANSI_RESET);
+		 //Formula: Area = ((base1 + base2) * height) / 2
+		 
+		 double bases;//i inatialized bases outside the loop so that i can use it after it enters and gets out of the while loop
+		 
+		 while (true) { 
+			 System.out.print(ANSI_WHITE+"Enter base 1: "+ANSI_RESET);
+		        double firstbase = tra.nextDouble();
+		        if (firstbase <= 0) {
+		            System.err.println("Invalid length. Please enter a positive number.");
+		           continue;
+		        }
+		        
+		        System.out.print(ANSI_WHITE+"Enter base 2: "+ANSI_RESET);
+		        double secondbase = tra.nextDouble();
+		        if (secondbase <= 0) {
+		            System.err.println("Invalid length. Please enter a positive number.");
+		            continue;
+		        }
+		        
+	        if(firstbase<secondbase) {
+	        	 bases = firstbase + secondbase;
+	        	break;
+	        }
+	       
+	        else if (firstbase>secondbase) {
+	            System.err.println("base 2 is less than base 1 "+"\n please re-enter the bases length"); //tells the user that the input isn't valid (error)
+	            continue; }
+	        
+	        else if(firstbase<=0||secondbase<=0){
+	        	System.err.println("please enter positive values"); //tells the user that the input isn't valid (error)
+	            continue;}
+	        
+  
+}// while loop end
+
+	        System.out.print(ANSI_WHITE+"Enter the height: "+ANSI_RESET);
+	        double height = tra.nextDouble();
+	        if (height <= 0) {
+	            System.err.println("Invalid length. Please enter a positive number(not zero).");
+	            tra.close();
+	            return;
+	        }
+	        double area = (bases * height) / 2;
+	        
+	        System.out.println("Area of the parallelogram: " + area);
+	        break;
+			 }
+				
+			        catch(InputMismatchException e) {
+			        	System.err.println(e.getMessage()+" the value cant be negative or 0 or a character");
+			        	tra.next();
+			        	continue;
+			        }
+			 
+	 }//trapezoid helper-method end
+   }
+}//code end
+
+v
