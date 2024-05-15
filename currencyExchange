@@ -1,0 +1,32 @@
+#includestdio.h
+int main()
+{
+Currency Exchange
+double jd;
+
+printf( enter the amount of money in jdn);
+scanf(%lf,&jd);
+
+char choice;
+
+printf( yenyY n euroEe n dollardD n);
+printf(enter the currencyn);
+scanf( %c,&choice);
+
+switch(choice)
+{
+case 'd'
+case 'D'
+printf((%lf) jordanian Dinar = (%f) United States Dollar,jd,jd1.141);
+break;
+case 'e'
+case 'E'
+printf((%lf) jordanian Dinar = (%f) euro,jd,jd1.32);
+break;
+case 'y'
+case 'Y'
+printf((%lf) jordanian Dinar = (%f) japanese yen,jd,jd187.18);
+break; 
+}
+    return 0; 
+    }
