@@ -1,0 +1,41 @@
+#include<stdio.h>
+int main()
+{
+/*winter(december:31-january:31-february:28/29)
+    spring(march:31-april:30-may:31)
+    summer(june:30-july:31-august:31)
+    autumn(september:30-october:31-november:30)*/
+    printf("this program is designed to show you the number of days in the month you enter:-\n");
+    printf("please enter the number of the month using the information given to you\n");
+    printf("january is 1\nfebruary is 2\nmarch is 3\napril is 4\nmay is 5\njune is 6\njuly is 7\naugust is 8\n");
+    printf("september is 9\noctober is 10\nnovember is 11\ndecember is 12\n");
+     int month;
+    scanf("%d",&month);
+    printf("this month has:");
+    if (month==1)
+       { printf("31 days(january)");}
+       if(month==2)
+       {printf("28/29 days(february)");}
+       if(month==3)
+       {printf("31 days(march)");}
+        if (month==4)
+       { printf("30 days(april)");}
+       if(month==5)
+       {printf("31 days(may)");}
+       if(month==6)
+       {printf("30 days(june)");}
+       if (month==7)
+       { printf("31 days(july)");}
+       if(month==8)
+       {printf("31 days(august)");}
+       if(month==9)
+       {printf("30 days(september)");}
+        if (month==10)
+       { printf("31 days(ocotber)");}
+       if(month==11)
+       {printf("30 days(november)");}
+       if(month==12)
+       {printf("31 days(december)");}
+       
+return 0;
+}
